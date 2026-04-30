@@ -1,0 +1,35 @@
+version: 2
+
+models:
+
+  - name: stg_geography__deduped
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - snapshot_month
+            - Code
+            - Name
+            - Geography
+            - Metric
+            - Category
+            - '"Waiting Bands"'
+
+  - name: stg_specialty__deduped
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - snapshot_month
+            - '"Treatment Function Code"'
+            - Metric
+            - Category
+            - '"Waiting Bands"'
+
+  - name: stg_timeseries__deduped
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - snapshot_month
+            - '"Week Ending Date"'
+            - Metric
+            - Category
+            - '"Waiting Bands"'

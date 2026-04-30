@@ -1,0 +1,107 @@
+erDiagram
+
+    dim_demographic {
+        varchar demographic_sk PK
+        varchar demographic_dimension
+        varchar demographic_value
+        varchar imd_version
+        int is_unknown
+        int is_total
+    }
+
+    dim_geography {
+        varchar geography_sk PK
+        varchar trust_code
+        varchar trust_name
+        date valid_from_date
+        date valid_to_date
+        int is_current
+        int submission_gap
+        varchar gap_reason
+    }
+
+    dim_specialty {
+        varchar specialty_sk PK
+        varchar treatment_function_code
+        varchar treatment_function_name
+        int grouping
+        date valid_from_date
+        date valid_to_date
+        int is_current
+    }
+
+    dim_waiting_band["dim_waiting_band (seeds)"] {
+        int waiting_band_sk PK
+        varchar waiting_band
+        int breach_18_flag
+        int breach_52_flag
+        int is_total
+        int ordinal
+    }
+
+    dim_date["dim_date (DAX)"] {
+        date Date PK
+        int month_number
+        varchar month_name
+        varchar month_short
+        int year
+        varchar year_month
+        varchar financial_year
+        int financial_month
+        bit is_week_ending_sunday
+    }
+
+    fact_waiting_list_geography {
+        date snapshot_date FK
+        varchar geography_sk FK
+        varchar geography_level
+        varchar specialty_sk
+        varchar metric
+        varchar demographic_sk FK
+        int waiting_band_sk FK
+        int patient_count
+    }
+
+    fact_waiting_list_specialty {
+        date snapshot_date FK
+        varchar geography_sk
+        varchar specialty_sk FK
+        varchar demographic_sk FK
+        int waiting_band_sk FK
+        int patient_count
+    }
+
+    fact_waiting_list_timeseries {
+        date week_ending_date FK
+        varchar metric
+        varchar geography_sk
+        varchar specialty_sk
+        varchar demographic_sk FK
+        int waiting_band_sk FK
+        int patient_count
+    }
+
+    stat_funnel_results["stat_funnel_results (semantic model)"] {
+        decimal breach_rate
+        int breached_pathways
+        decimal ci_lower_2sd
+        decimal ci_lower_3sd
+        decimal ci_upper_2sd
+        decimal ci_upper_3sd
+        boolean is_outlier_alert
+        boolean is_outlier_warning
+        decimal national_rate
+    }
+
+    dim_date ||--o{ fact_waiting_list_timeseries : "week_ending_date"
+    dim_date ||--o{ fact_waiting_list_geography : "snapshot_date"
+    dim_date ||--o{ fact_waiting_list_specialty : "snapshot_date"
+    dim_geography ||--o{ fact_waiting_list_geography : "geography_sk"
+    dim_specialty ||--o{ fact_waiting_list_specialty : "specialty_sk"
+    dim_demographic ||--o{ fact_waiting_list_timeseries : "demographic_sk"
+    dim_demographic ||--o{ fact_waiting_list_geography : "demographic_sk"
+    dim_demographic ||--o{ fact_waiting_list_specialty : "demographic_sk"
+    dim_waiting_band ||--o{ fact_waiting_list_timeseries : "waiting_band_sk"
+    dim_waiting_band ||--o{ fact_waiting_list_geography : "waiting_band_sk"
+    dim_waiting_band ||--o{ fact_waiting_list_specialty : "waiting_band_sk"
+    fact_waiting_list_geography ||--o{ stat_funnel_results : "geography_sk"

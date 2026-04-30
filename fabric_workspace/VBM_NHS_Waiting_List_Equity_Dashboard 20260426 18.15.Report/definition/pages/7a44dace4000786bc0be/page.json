@@ -1,0 +1,64 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "7a44dace4000786bc0be",
+  "displayName": "Equity",
+  "displayOption": "ActualSize",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "11fd1658483aa6a0368d",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7F8FA'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "318L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "000a2ada6000a642808e",
+      "target": "0cd7be60eacc0a84e973",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c891dcc518d3b9827ec4",
+      "target": "51bb0551bd27b30cd5e4",
+      "type": "NoFilter"
+    }
+  ]
+}

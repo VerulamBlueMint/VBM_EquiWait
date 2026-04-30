@@ -1,0 +1,46 @@
+table 'seeds trust_name_canonical'
+	lineageTag: b24da4cf-470b-4464-9ae8-61853791ecf9
+
+	column trust_code
+		dataType: string
+		lineageTag: c2a46223-6f64-4067-8c1d-f0f48fb2275b
+		summarizeBy: none
+		sourceColumn: trust_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column variant_name
+		dataType: string
+		lineageTag: 060d745c-3f37-4b5e-ae22-ac26a5449054
+		summarizeBy: none
+		sourceColumn: variant_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column canonical_name
+		dataType: string
+		lineageTag: 4d8633be-b19b-4bf9-ae4d-9b531d25cd98
+		summarizeBy: none
+		sourceColumn: canonical_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column notes
+		dataType: string
+		lineageTag: 1a495b13-2346-4c7b-9950-c511e358dac2
+		summarizeBy: none
+		sourceColumn: notes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'seeds trust_name_canonical' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("cpyrj2l3u7cepf4tjtoipc3tyy-m7utez3cd7gezjzemdtewuldnq.datawarehouse.fabric.microsoft.com", "VBM_EquiWait_WH"),
+				    seeds_trust_name_canonical = Source{[Schema="seeds",Item="trust_name_canonical"]}[Data]
+				in
+				    seeds_trust_name_canonical
+
+	annotation PBI_ResultType = Table
+

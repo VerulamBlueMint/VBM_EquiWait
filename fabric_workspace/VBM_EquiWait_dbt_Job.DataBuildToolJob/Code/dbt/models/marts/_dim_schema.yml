@@ -1,0 +1,266 @@
+version: 2
+
+models:
+  - name: dim_geography
+    description: >
+      Geography dimension at trust level, implemented as an SCD Type 2.
+      Tracks trust name changes over time and flags known submission gaps.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - trust_code
+            - valid_from_date
+    columns:
+      - name: geography_sk
+        description: "Surrogate key for the geography dimension."
+        tests:
+          - not_null
+
+      - name: trust_code
+        description: "ODS trust code."
+        tests:
+          - not_null
+
+      - name: trust_name
+        description: "Trust name as valid for the effective period."
+        tests:
+          - not_null
+
+      - name: valid_from_date
+        description: "Start date for this version of the trust record."
+        tests:
+          - not_null
+
+      - name: valid_to_date
+        description: "End date for this version of the trust record."
+        tests:
+          - not_null
+
+      - name: is_current
+        description: "Indicates whether this record is the current version."
+        tests:
+          - not_null
+
+      - name: submission_gap
+        description: "Indicates a known data submission gap for this trust and period."
+        tests:
+          - not_null
+
+      - name: gap_reason
+        description: "Reason for the submission gap, where applicable."
+
+  - name: dim_specialty
+    description: >
+      Specialty dimension implemented as an SCD Type 2.
+      Tracks treatment function codes over time and is structured
+      to support future name or grouping changes.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - treatment_function_code
+            - valid_from_date
+    columns:
+      - name: specialty_sk
+        description: "Surrogate key for the specialty dimension."
+        tests:
+          - not_null
+
+      - name: treatment_function_code
+        description: "Treatment function code acting as the business key."
+        tests:
+          - not_null
+
+      - name: treatment_function_name
+        description: >
+          Display name for the treatment function.
+          Currently identical to the code due to source limitations.
+        tests:
+          - not_null
+
+      - name: grouping
+        description: "Optional grouping of treatment functions (future use)."
+
+      - name: valid_from_date
+        description: "Start date for this version of the specialty record."
+        tests:
+          - not_null
+
+      - name: valid_to_date
+        description: "End date for this version of the specialty record."
+        tests:
+          - not_null
+
+      - name: is_current
+        description: "Indicates whether this record is the current version."
+        tests:
+          - not_null
+
+  - name: dim_demographic
+    description: >
+      Demographic dimension implemented as a Type 1 dimension.
+      Contains demographic dimensions and category values used for
+      equity analysis, with explicit flags for totals and unknown values.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - demographic_dimension
+            - demographic_value
+    columns:
+      - name: demographic_sk
+        description: "Surrogate key for the demographic dimension."
+        tests:
+          - not_null
+
+      - name: demographic_dimension
+        description: "Demographic dimension name (e.g. Age, Sex, Ethnicity, IMD)."
+        tests:
+          - not_null
+
+      - name: demographic_value
+        description: "Category value within the demographic dimension."
+        tests:
+          - not_null
+
+      - name: imd_version
+        description: "IMD release version used for deprivation categories, where applicable."
+
+      - name: is_unknown
+        description: "Indicates whether the demographic value represents an unknown category."
+        tests:
+          - not_null
+
+      - name: is_total
+        description: "Indicates whether the demographic value represents a Total row."
+        tests:
+          - not_null
+          
+  - name: fact_waiting_list_timeseries
+    description: >
+      Weekly England-level waiting list timeseries.
+      One row per week, demographic group, waiting band, and metric.
+      Where the same week appears in multiple snapshots, the latest
+      published snapshot is retained.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - week_ending_date
+            - metric
+            - demographic_sk
+            - waiting_band_sk
+    columns:
+      - name: week_ending_date
+        tests: [not_null]
+
+      - name: metric
+        tests: [not_null]
+
+      - name: geography_sk
+        tests: [not_null]
+
+      - name: specialty_sk
+        tests: [not_null]
+
+      - name: demographic_sk
+        tests: [not_null]
+
+      - name: waiting_band_sk
+        tests: [not_null]
+
+      - name: patient_count
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+  - name: fact_waiting_list_geography
+    description: >
+      Monthly organisation-level waiting list fact table.
+      One row per snapshot month, geography, demographic group,
+      and waiting band. Suppressed counts are excluded.
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - snapshot_date
+            - geography_sk
+            - geography_level
+            - metric
+            - demographic_sk
+            - waiting_band_sk
+    columns:
+      - name: snapshot_date
+        description: "Monthly snapshot date representing the measurement time."
+        tests:
+          - not_null
+
+      - name: geography_sk
+        description: "Foreign key to dim_geography."
+        tests:
+          - not_null
+
+      - name: specialty_sk
+        description: "Specialty surrogate key. Always -1 (Not Applicable) for this fact."
+        tests:
+          - not_null
+
+      - name: demographic_sk
+        description: "Foreign key to dim_demographic."
+        tests:
+          - not_null
+
+      - name: waiting_band_sk
+        description: "Foreign key to dim_waiting_band."
+        tests:
+          - not_null
+
+      - name: patient_count
+        description: "Count of incomplete RTT pathways."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+  - name: fact_waiting_list_specialty
+    description: >
+      Monthly treatment-function-level waiting list fact table.
+      One row per snapshot month, specialty, demographic group,
+      and waiting band. Suppressed counts are excluded.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - snapshot_date
+            - specialty_sk
+            - demographic_sk
+            - waiting_band_sk
+    columns:
+      - name: snapshot_date
+        description: "Monthly snapshot date representing the measurement time."
+        tests:
+          - not_null
+
+      - name: geography_sk
+        description: "Geography surrogate key. Always -1 (Not Applicable) for this fact."
+        tests:
+          - not_null
+
+      - name: specialty_sk
+        description: "Foreign key to dim_specialty."
+        tests:
+          - not_null
+
+      - name: demographic_sk
+        description: "Foreign key to dim_demographic."
+        tests:
+          - not_null
+
+      - name: waiting_band_sk
+        description: "Foreign key to dim_waiting_band."
+        tests:
+          - not_null
+
+      - name: patient_count
+        description: "Count of incomplete RTT pathways."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0

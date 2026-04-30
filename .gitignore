@@ -1,0 +1,102 @@
+# ============================================================
+# VBM EquiWait — .gitignore
+# ============================================================
+
+# ------------------------------------------------------------
+# Secrets and environment
+# ------------------------------------------------------------
+
+.env
+.env.*
+secrets/
+credentials/
+
+# ------------------------------------------------------------
+# Virtual environments
+# ------------------------------------------------------------
+
+env/
+venv/
+.venv/
+equiwait-env/
+
+# ------------------------------------------------------------
+# Working folders
+# ------------------------------------------------------------
+
+Working/
+logs/
+
+# ------------------------------------------------------------
+# dbt
+# ------------------------------------------------------------
+
+# dbt_packages/ is installed by dbt deps and is not source code
+# target/ contains compiled SQL and run artefacts generated at runtime
+# package-lock.yml is auto-generated and environment-specific
+# dbt logs — generated at runtime, not source code
+
+dbt_analytics/dbt_packages/
+dbt_analytics/target/
+dbt_analytics/package-lock.yml
+dbt_analytics/logs/
+
+# Real profiles.yml contains credentials — never commit
+dbt_analytics/profiles.yml
+
+# Fabric dbt job folder — local build artefacts excluded for the same reasons as above
+# In production, dbt deps and compilation are managed by the Fabric dbt job runtime
+# Committing these would cause conflicts with what Fabric manages and pollute the repository
+
+fabric_workspace/VBM_EquiWait_dbt_Job.DataBuildToolJob/Code/dbt/dbt_packages/
+fabric_workspace/VBM_EquiWait_dbt_Job.DataBuildToolJob/Code/dbt/target/
+fabric_workspace/VBM_EquiWait_dbt_Job.DataBuildToolJob/Code/dbt/package-lock.yml
+
+fabric_workspace/VBM_EquiWait_dbt_Job.DataBuildToolJob/Code/dbt/logs/
+
+# Ignore entire Fabric workspace folders (top-level)
+fabric_workspace/My Power BI Activator Alerts.Reflex/
+fabric_workspace/VBM_NHS_Waiting_List_Equity_Dashboard.Report/
+fabric_workspace/VBM_EquiWait_SM.SemanticModel/
+fabric_workspace/notebooks/
+fabric_workspace/pipelines/
+fabric_workspace/stats_regression.MLExperiment/
+fabric_workspace/VBM_EquiWait_WH.Warehouse/
+fabric_workspace/VBM_EquiWait_LH.Lakehouse/
+
+
+
+# ------------------------------------------------------------
+# Python
+# ------------------------------------------------------------
+
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# ------------------------------------------------------------
+# Notebooks
+# ------------------------------------------------------------
+
+**/.ipynb_checkpoints/
+
+# ------------------------------------------------------------
+# OS and editors
+# ------------------------------------------------------------
+
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ------------------------------------------------------------
+# Reconciliation data exports
+# ------------------------------------------------------------
+
+docs/reconciliation/findings/*.csv
+docs/reconciliation/findings/*.xlsx

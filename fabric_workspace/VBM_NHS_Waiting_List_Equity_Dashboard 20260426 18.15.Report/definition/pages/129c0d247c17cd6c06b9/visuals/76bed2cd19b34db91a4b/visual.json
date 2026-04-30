@@ -1,0 +1,309 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "76bed2cd19b34db91a4b",
+  "position": {
+    "x": 8,
+    "y": 368,
+    "z": 7000,
+    "height": 344,
+    "width": 632,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_geography"
+                    }
+                  },
+                  "Property": "trust_name"
+                }
+              },
+              "queryRef": "dim_geography.trust_name",
+              "nativeQueryRef": "trust_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Breach Rate (Region)"
+                }
+              },
+              "queryRef": "_Measures.Breach Rate (Region)",
+              "nativeQueryRef": "Breach Rate (Region)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "National Breach Rate (Reference)"
+                }
+              },
+              "queryRef": "_Measures.National Breach Rate (Reference)",
+              "nativeQueryRef": "National Breach Rate (Reference)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Waiting List (Region, Label)"
+                }
+              },
+              "queryRef": "_Measures.Total Waiting List (Region, Label)",
+              "nativeQueryRef": "Total Waiting List (Region, Label)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_geography"
+                  }
+                },
+                "Property": "trust_name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n\"title\": {\n    \"text\": \"Breach Rates by Region\",\n    \"subtitle\": [ \"Regional figures reflect NHS Acute providers only and exclude Independent Sector and Other pathways\", \"Figures in bars show waiting list size (WL)\"],\n    \"fontSize\": 14,\n    \"font\": \"Segoe UI Semibold\",\n    \"anchor\": \"start\",\n    \"color\": \"#072F5C\",\n    \"subtitleColor\": \"#6B7280\",\n    \"subtitleFontSize\": 10\n  },\n  \"data\": {\"name\": \"dataset\"},\n  \"layer\": [\n    {\n      \"mark\": {\"type\": \"bar\"},\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"trust_name\",\n          \"type\": \"nominal\",\n          \"sort\": \"-x\",\n          \"title\": null\n        },\n        \"x\": {\n          \"field\": \"Breach Rate (Region)\",\n          \"type\": \"quantitative\",\n          \"title\": \"Breach Rate\",\n          \"axis\": {\"format\": \".0%\"},\n          \"scale\": {\"zero\": true}\n        },\n        \"color\": {\n          \"condition\": [\n            {\"test\": \"datum[''Breach Rate (Region)''] < 0.1\", \"value\": \"#059669\"},\n            {\"test\": \"datum[''Breach Rate (Region)''] < 0.4\", \"value\": \"#F97316\"}\n          ],\n          \"value\": \"#DC2626\"\n        }\n      }\n    },\n    {\n      \"mark\": {\"type\": \"text\", \"align\": \"left\", \"dx\": 5, \"baseline\": \"middle\"},\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"trust_name\",\n          \"type\": \"nominal\"\n        },\n        \"x\": {\"value\": 5},\n        \"text\": {\n          \"field\": \"Total Waiting List (Region, Label)\",\n          \"type\": \"nominal\"\n        },\n        \"color\": {\"value\": \"#ffffff\"}\n      }\n    },\n    {\n      \"mark\": {\"type\": \"rule\", \"strokeDash\": [4, 2]},\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"National Breach Rate (Reference)\",\n          \"type\": \"quantitative\",\n          \"aggregate\": \"mean\"\n        },\n        \"color\": {\"value\": \"#C00000\"},\n        \"size\": {\"value\": 10}\n      }\n    },\n    {\n      \"mark\": {\"type\": \"text\", \"align\": \"center\", \"dx\": 0, \"dy\": -10, \"text\": \"National Average\", \"baseline\": \"bottom\"},\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"National Breach Rate (Reference)\",\n          \"type\": \"quantitative\",\n          \"aggregate\": \"mean\"\n        },\n        \"y\": {\"value\": 0},\n        \"color\": {\"value\": \"#000000\"}\n      }\n    }\n  ]\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{}'"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "selectionMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'simple'"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "334D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "622D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.9.1.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d1bc3f2704c596235c96",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_geography"
+              }
+            },
+            "Property": "trust_code"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dim_geography",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "trust_code"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Y58'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Y59'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Y60'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Y61'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Y62'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Y63'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Y56'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

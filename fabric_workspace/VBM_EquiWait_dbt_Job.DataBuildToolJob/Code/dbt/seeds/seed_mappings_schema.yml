@@ -1,0 +1,67 @@
+version: 2
+
+seeds:
+  - name: trust_name_canonical
+    description: >
+      Canonical trust name mapping for the three NHS trusts that rebranded
+      during the eight-release WLMDS period. Maps both name variants to a
+      single canonical form keyed on ODS code and variant name.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - trust_code
+            - variant_name
+    columns:
+      - name: trust_code
+        description: "ODS code for the trust. Unchanged across the rebrand."
+        tests:
+          - not_null
+
+      - name: variant_name
+        description: "Name as it appears in the source data for this trust and period."
+        tests:
+          - not_null
+
+      - name: canonical_name
+        description: "The canonical name to use in all downstream models."
+        tests:
+          - not_null
+
+      - name: notes
+        description: "Human-readable explanation of the rebrand."
+
+  - name: dim_waiting_band
+    description: >
+      Static waiting band dimension defining RTT waiting time bands,
+      including breach flags and a Total row for reconciliation.
+    columns:
+      - name: waiting_band_sk
+        description: "Surrogate key for the waiting band."
+        tests:
+          - not_null
+          - unique
+
+      - name: band_label
+        description: "Human-readable waiting band label."
+        tests:
+          - not_null
+
+      - name: ordinal
+        description: "Ordinal position used for sorting waiting bands."
+        tests:
+          - not_null
+
+      - name: breach_18_flag
+        description: "Indicates whether the waiting band breaches the 18-week standard."
+        tests:
+          - not_null
+
+      - name: breach_52_flag
+        description: "Indicates whether the waiting band breaches the 52-week standard."
+        tests:
+          - not_null
+
+      - name: is_total
+        description: "Indicates whether the row represents a pre-aggregated Total."
+        tests:
+          - not_null

@@ -1,0 +1,109 @@
+table 'stats stat_significance_results'
+	lineageTag: dec7b535-3b2b-43ab-be75-a5905335b070
+
+	column demographic_dimension
+		dataType: string
+		lineageTag: 975da6cd-cb06-4f05-8cb6-c50a72380b4a
+		summarizeBy: none
+		sourceColumn: demographic_dimension
+
+		annotation SummarizationSetBy = Automatic
+
+	column chi2_statistic
+		dataType: double
+		lineageTag: 57e99115-2109-4c35-b39e-855e2037a663
+		summarizeBy: sum
+		sourceColumn: chi2_statistic
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column p_value_uncorrected
+		dataType: double
+		lineageTag: a4015f4f-10df-471c-9d44-31ed7a82b9b6
+		summarizeBy: sum
+		sourceColumn: p_value_uncorrected
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column p_value_corrected
+		dataType: double
+		lineageTag: 87b4f33e-e4e0-4540-880e-3d076f1a9e44
+		summarizeBy: sum
+		sourceColumn: p_value_corrected
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column degrees_of_freedom
+		dataType: int64
+		formatString: 0
+		lineageTag: eab560e1-333a-4ff4-8f1d-e878cc4ff24d
+		summarizeBy: sum
+		sourceColumn: degrees_of_freedom
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_significant
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7075c323-63ac-4a6e-bd10-aecaa0d73af6
+		summarizeBy: none
+		sourceColumn: is_significant
+
+		annotation SummarizationSetBy = Automatic
+
+	column low_expected_count_flag
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 81846ae6-d73f-4b5e-aa92-ebaadf034b02
+		summarizeBy: none
+		sourceColumn: low_expected_count_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: da36b96f-591b-49d5-9aa0-76275e0e164d
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		variation Variation
+			isDefault
+			relationship: 60d4b75f-9dac-4692-a742-962f4355c5b2
+			defaultHierarchy: LocalDateTable_c23c3d24-c13e-4239-9815-1539411836c9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column run_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cd036548-0f20-498a-9b04-18704298ee12
+		summarizeBy: none
+		sourceColumn: run_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 9896dbd4-2eff-460f-80eb-0eefac9c527a
+			defaultHierarchy: LocalDateTable_0b90ad87-0c39-4b31-8f42-23575d14e9a9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'stats stat_significance_results' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("cpyrj2l3u7cepf4tjtoipc3tyy-m7utez3cd7gezjzemdtewuldnq.datawarehouse.fabric.microsoft.com", "VBM_EquiWait_WH"),
+				    stats_stat_significance_results = Source{[Schema="stats",Item="stat_significance_results"]}[Data]
+				in
+				    stats_stat_significance_results
+
+	annotation PBI_ResultType = Table
+

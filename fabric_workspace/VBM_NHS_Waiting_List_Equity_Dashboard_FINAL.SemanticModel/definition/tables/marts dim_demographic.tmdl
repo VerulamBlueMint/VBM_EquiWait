@@ -1,0 +1,64 @@
+table 'marts dim_demographic'
+	lineageTag: 639494a7-4f9d-4e60-bfe0-7c614c82544d
+
+	column demographic_sk
+		dataType: string
+		lineageTag: 4429c551-917e-4833-ac25-3988830d854c
+		summarizeBy: none
+		sourceColumn: demographic_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column demographic_dimension
+		dataType: string
+		lineageTag: 8ee5bef1-2dfd-472c-ba27-4fbec9fa29f7
+		summarizeBy: none
+		sourceColumn: demographic_dimension
+
+		annotation SummarizationSetBy = Automatic
+
+	column demographic_value
+		dataType: string
+		lineageTag: 2bcf789d-8a87-4902-a7e4-7edf5fdc047a
+		summarizeBy: none
+		sourceColumn: demographic_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column imd_version
+		dataType: string
+		lineageTag: 56234547-04e3-49e8-b9a2-09ac870ed960
+		summarizeBy: none
+		sourceColumn: imd_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_unknown
+		dataType: int64
+		formatString: 0
+		lineageTag: 70cdfa5f-3e98-4eee-b49a-22e2dfd5d666
+		summarizeBy: sum
+		sourceColumn: is_unknown
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_total
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c65dbcc-f599-457f-8bf7-af8295d382aa
+		summarizeBy: sum
+		sourceColumn: is_total
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'marts dim_demographic' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("cpyrj2l3u7cepf4tjtoipc3tyy-m7utez3cd7gezjzemdtewuldnq.datawarehouse.fabric.microsoft.com", "VBM_EquiWait_WH"),
+				    marts_dim_demographic = Source{[Schema="marts",Item="dim_demographic"]}[Data]
+				in
+				    marts_dim_demographic
+
+	annotation PBI_ResultType = Table
+

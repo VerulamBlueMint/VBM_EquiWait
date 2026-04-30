@@ -1,0 +1,58 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["landing wlmds_geography_landing","landing wlmds_specialty_landing","marts dim_demographic","landing wlmds_timeseries_landing","marts dim_geography","marts dim_specialty","marts fact_waiting_list_geography","marts fact_waiting_list_specialty","marts fact_waiting_list_timeseries","seeds dim_waiting_band","stats stat_adjusted_residuals","seeds trust_name_canonical","stats stat_effect_size","stats stat_funnel_results","stats stat_overrepresentation_long_waits","stats stat_regression_results","stats stat_significance_results"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'landing wlmds_geography_landing'
+ref table DateTableTemplate_2ffa3482-c783-4f47-9cd4-7b7e5216520b
+ref table LocalDateTable_374d5b16-a3a2-4849-8020-7cc12206ee22
+ref table LocalDateTable_855d8ca3-a447-44cc-908b-5aa9ee16d518
+ref table 'landing wlmds_specialty_landing'
+ref table LocalDateTable_191dc5b8-b9a2-4f43-a696-f181eee2444f
+ref table LocalDateTable_cff315b9-ec41-4663-8a96-779cdddfd68c
+ref table 'marts dim_demographic'
+ref table 'landing wlmds_timeseries_landing'
+ref table LocalDateTable_6663c0d7-be18-461e-a8af-01b5d01c4f77
+ref table LocalDateTable_c581fb23-063b-4481-bc24-2ca6aa2f1e6a
+ref table 'marts dim_geography'
+ref table LocalDateTable_5da0c3e5-f004-463a-90fb-a2065626cd43
+ref table LocalDateTable_4802d009-5a03-4c4b-8ed0-fbbe9fb98eb7
+ref table 'marts dim_specialty'
+ref table LocalDateTable_a96724bc-c3c1-4611-b8a7-adae15f0da3f
+ref table LocalDateTable_d734db6a-a9d5-4171-9008-f0d35b69a1e4
+ref table 'marts fact_waiting_list_geography'
+ref table 'marts fact_waiting_list_specialty'
+ref table 'marts fact_waiting_list_timeseries'
+ref table 'seeds dim_waiting_band'
+ref table 'stats stat_adjusted_residuals'
+ref table LocalDateTable_1c02f48b-e46e-4e8e-8f2f-fb8cc16ff172
+ref table LocalDateTable_c3b03acf-c594-4b2f-a30c-dcadbd56bac4
+ref table 'seeds trust_name_canonical'
+ref table 'stats stat_effect_size'
+ref table LocalDateTable_32ea9258-9731-488f-a0b4-bea00f365fc1
+ref table LocalDateTable_21969b04-9d8a-4a2b-9430-1f4c1e5b739f
+ref table 'stats stat_funnel_results'
+ref table LocalDateTable_4296c81d-5fcb-4389-8d06-e0d342257d96
+ref table 'stats stat_overrepresentation_long_waits'
+ref table LocalDateTable_ffeb7927-6fd2-4f70-adfd-af3176390537
+ref table LocalDateTable_9481a14c-6d42-4361-9cd8-17dc1af3d677
+ref table 'stats stat_regression_results'
+ref table LocalDateTable_9cd2d4f3-5a5b-474f-8173-416a5b0ce128
+ref table LocalDateTable_31ae6e33-6000-4e8e-950f-69384773d9aa
+ref table 'stats stat_significance_results'
+ref table LocalDateTable_c23c3d24-c13e-4239-9815-1539411836c9
+ref table LocalDateTable_0b90ad87-0c39-4b31-8f42-23575d14e9a9
+ref table _Measures
+ref table dim_date
+
+ref cultureInfo en-GB
+

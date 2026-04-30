@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "VBM_NHS_Waiting_List_Equity_Dashboard 20260426 18.15"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f486c9c1-8cf9-9ff1-4787-9778acd96852"
+  }
+}

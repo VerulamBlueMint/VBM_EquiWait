@@ -1,0 +1,74 @@
+version: 2
+
+models:
+
+  - name: int_geography
+    description: >
+      Cleaned geography-level waiting list data with canonicalised trust names.
+      Retains all geography levels present in the source data.
+      One row per snapshot month, trust code, geography level, metric,
+      category, and waiting band.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - snapshot_month
+            - code
+            - geography
+            - metric
+            - category
+            - waiting_bands
+    columns:
+      - name: code
+        description: "ODS code identifying the trust."
+        tests:
+          - not_null
+
+      - name: trust_name_canonical
+        description: "Canonical trust name used consistently across rebrands."
+        tests:
+          - not_null
+
+  - name: int_specialty
+    description: >
+      Cleaned specialty-level waiting list data with normalised treatment
+      function names. One row per snapshot month, treatment function,
+      metric, category, and waiting band.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - snapshot_month
+            - treatment_function_code
+            - metric
+            - category
+            - waiting_bands
+    columns:
+      - name: treatment_function_code
+        description: "Treatment function name with whitespace normalised."
+        tests:
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values:
+                - 'Other -  Medical Services'
+                - 'Other -  Mental Health Services'
+                - 'Other -  Other Services'
+                - 'Other -  Paediatric Services'
+                - 'Other -  Surgical Services'
+
+  - name: int_timeseries
+    description: >
+      Cleaned timeseries waiting list data with normalised week ending dates.
+      One row per snapshot month, week ending date, metric, category,
+      and waiting band.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - snapshot_month
+            - week_ending_date
+            - metric
+            - category
+            - waiting_bands
+    columns:
+      - name: week_ending_date
+        description: "Week ending date normalised to DATE type across releases."
+        tests:
+          - not_null

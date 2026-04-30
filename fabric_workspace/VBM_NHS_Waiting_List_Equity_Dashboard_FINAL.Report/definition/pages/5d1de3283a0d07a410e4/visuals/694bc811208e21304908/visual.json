@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "694bc811208e21304908",
+  "position": {
+    "x": 872,
+    "y": 408,
+    "z": 28000,
+    "height": 288,
+    "width": 400,
+    "tabOrder": 25000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Specific groups are more likely to end up in longer wait bands than the national average predicts. The gap table shows the size of that difference in plain percentage point terms. The table on the right shows which groups drive it statistically, for the selected reference month.",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#808080"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "The gaps are small. But they apply to hundreds of thousands of patients, in the same direction, month after month. The dashboard identifies who is affected. It does not yet explain why. Whether referral practice, specialty mix, cancellation rates, or something else entirely. This requires further investigation.",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#808080"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2B6BFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,121 @@
+table 'stats stat_regression_results'
+	lineageTag: 28b58f3f-5e9a-469d-91db-b88cb54312f4
+
+	column coefficient
+		dataType: double
+		lineageTag: ab575916-3dbd-4bd8-964d-3738f1c5464e
+		summarizeBy: sum
+		sourceColumn: coefficient
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column std_error
+		dataType: double
+		lineageTag: ca4a0f76-3981-40e0-a802-df308d9e31bd
+		summarizeBy: sum
+		sourceColumn: std_error
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column p_value
+		dataType: double
+		lineageTag: 4c6a0f51-520b-4b06-979e-cc165bbe9b93
+		summarizeBy: sum
+		sourceColumn: p_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ci_lower
+		dataType: double
+		lineageTag: 5a15312b-df6c-4771-a70a-559e0d86aa10
+		summarizeBy: sum
+		sourceColumn: ci_lower
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ci_upper
+		dataType: double
+		lineageTag: 39a9e617-5696-4ca9-9be8-c7da66899a17
+		summarizeBy: sum
+		sourceColumn: ci_upper
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r_squared
+		dataType: double
+		lineageTag: 38088758-dc5e-437e-85db-6389dd96e11f
+		summarizeBy: sum
+		sourceColumn: r_squared
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_observations
+		dataType: int64
+		formatString: 0
+		lineageTag: 030aac26-6e03-44ec-93aa-71f01c79e488
+		summarizeBy: sum
+		sourceColumn: n_observations
+
+		annotation SummarizationSetBy = Automatic
+
+	column note
+		dataType: string
+		lineageTag: 526298de-8bf4-4711-a626-725322380a93
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3435a068-0ecd-47ca-8e2c-8969c11b10ab
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		variation Variation
+			isDefault
+			relationship: 8156fb66-fd5a-44a4-9400-0df0cf93aa89
+			defaultHierarchy: LocalDateTable_9cd2d4f3-5a5b-474f-8173-416a5b0ce128.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column run_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 67a1bf85-c6fe-45db-8a87-9ff1f7024e5a
+		summarizeBy: none
+		sourceColumn: run_timestamp
+
+		variation Variation
+			isDefault
+			relationship: f35de008-ac53-4e2e-9261-eec9cf4d91dd
+			defaultHierarchy: LocalDateTable_31ae6e33-6000-4e8e-950f-69384773d9aa.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'stats stat_regression_results' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("cpyrj2l3u7cepf4tjtoipc3tyy-m7utez3cd7gezjzemdtewuldnq.datawarehouse.fabric.microsoft.com", "VBM_EquiWait_WH"),
+				    stats_stat_regression_results = Source{[Schema="stats",Item="stat_regression_results"]}[Data]
+				in
+				    stats_stat_regression_results
+
+	annotation PBI_ResultType = Table
+

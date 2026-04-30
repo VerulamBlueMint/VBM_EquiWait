@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: landing
+    database: "{{ 'VBM_EquiWait_DEV_WH' if target.name == 'local_dev' else 'VBM_EquiWait_WH' }}"
+    schema: landing
+    tables:
+      - name: wlmds_geography_landing
+      - name: wlmds_specialty_landing
+      - name: wlmds_timeseries_landing

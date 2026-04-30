@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataBuildToolJob",
+    "displayName": "VBM_EquiWait_dbt_Job"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "574776c9-d6c7-b1d2-4ca0-2388c449c205"
+  }
+}

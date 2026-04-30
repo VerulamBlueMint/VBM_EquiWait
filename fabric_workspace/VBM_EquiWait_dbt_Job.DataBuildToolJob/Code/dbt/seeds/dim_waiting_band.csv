@@ -1,0 +1,7 @@
+waiting_band_sk,band_label,ordinal,breach_18_flag,breach_52_flag,is_total
+-1,Not Applicable,0,false,false,false
+1,01 To 18 Weeks,1,false,false,false
+2,18 To 52 Weeks,2,true,false,false
+3,Over 52 Weeks,3,true,true,false
+4,Unknown Clock Start,4,false,false,false
+5,Total,5,false,false,true

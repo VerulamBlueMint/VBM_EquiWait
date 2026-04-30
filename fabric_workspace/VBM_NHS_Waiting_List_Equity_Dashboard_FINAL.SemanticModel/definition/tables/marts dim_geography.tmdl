@@ -1,0 +1,96 @@
+table 'marts dim_geography'
+	lineageTag: a165b688-1652-441a-980d-f67c6a4faeed
+
+	column geography_sk
+		dataType: string
+		lineageTag: 5537b70f-36fd-41ce-b65d-e56734aa03e5
+		summarizeBy: none
+		sourceColumn: geography_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column trust_code
+		dataType: string
+		lineageTag: fcef9df9-dfe6-4c48-8708-1e4d5932bedf
+		summarizeBy: none
+		sourceColumn: trust_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column trust_name
+		dataType: string
+		lineageTag: 016b64e1-589f-46e8-b2c3-4a248661b98a
+		summarizeBy: none
+		sourceColumn: trust_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3f44ca1f-6717-4ef0-b13c-3067b1b86861
+		summarizeBy: none
+		sourceColumn: valid_from_date
+
+		variation Variation
+			isDefault
+			relationship: ec3ba222-405e-4726-a3da-98eb0638916c
+			defaultHierarchy: LocalDateTable_5da0c3e5-f004-463a-90fb-a2065626cd43.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fb9dac67-e848-47f7-a3ed-b10149d8afca
+		summarizeBy: none
+		sourceColumn: valid_to_date
+
+		variation Variation
+			isDefault
+			relationship: 03d0fed1-6bb9-4a1b-ba02-a1b105d29fda
+			defaultHierarchy: LocalDateTable_4802d009-5a03-4c4b-8ed0-fbbe9fb98eb7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column is_current
+		dataType: int64
+		formatString: 0
+		lineageTag: 805c9582-1d2f-403f-ab5b-c4a414c3c450
+		summarizeBy: sum
+		sourceColumn: is_current
+
+		annotation SummarizationSetBy = Automatic
+
+	column submission_gap
+		dataType: int64
+		formatString: 0
+		lineageTag: 3272bd38-c595-4e39-acf0-a8446c1fae85
+		summarizeBy: sum
+		sourceColumn: submission_gap
+
+		annotation SummarizationSetBy = Automatic
+
+	column gap_reason
+		dataType: string
+		lineageTag: 78362062-7610-4d37-888f-e043681e4cb2
+		summarizeBy: none
+		sourceColumn: gap_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'marts dim_geography' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("cpyrj2l3u7cepf4tjtoipc3tyy-m7utez3cd7gezjzemdtewuldnq.datawarehouse.fabric.microsoft.com", "VBM_EquiWait_WH"),
+				    marts_dim_geography = Source{[Schema="marts",Item="dim_geography"]}[Data]
+				in
+				    marts_dim_geography
+
+	annotation PBI_ResultType = Table
+

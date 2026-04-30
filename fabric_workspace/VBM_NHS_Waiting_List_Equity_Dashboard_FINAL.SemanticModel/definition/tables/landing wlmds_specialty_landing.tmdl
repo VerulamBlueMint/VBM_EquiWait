@@ -1,0 +1,106 @@
+table 'landing wlmds_specialty_landing'
+	lineageTag: 03746e11-4157-4778-9cbb-af10123908a7
+
+	column 'Treatment Function Code'
+		dataType: string
+		lineageTag: f614b268-a152-488f-9133-89008c3ec035
+		summarizeBy: none
+		sourceColumn: Treatment Function Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metric
+		dataType: string
+		lineageTag: bf0ad8b1-74ca-487f-af04-4d09c7824e15
+		summarizeBy: none
+		sourceColumn: Metric
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: b202a67b-a71b-4ebf-9da9-5c7a3ede8f45
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Waiting Bands'
+		dataType: string
+		lineageTag: c0cedc55-0305-425f-9e4a-3653d1f63ade
+		summarizeBy: none
+		sourceColumn: Waiting Bands
+
+		annotation SummarizationSetBy = Automatic
+
+	column Count
+		dataType: string
+		lineageTag: f5c553ac-bd4e-44a8-898a-97b5656464dc
+		summarizeBy: none
+		sourceColumn: Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_month
+		dataType: string
+		lineageTag: 73b54620-a03f-419f-9a43-3a45a83f6801
+		summarizeBy: none
+		sourceColumn: snapshot_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_filename
+		dataType: string
+		lineageTag: 6f5f6cac-96ab-4daf-a685-264f69dae783
+		summarizeBy: none
+		sourceColumn: source_filename
+
+		annotation SummarizationSetBy = Automatic
+
+	column file_version
+		dataType: string
+		lineageTag: 216ae28e-332c-41ae-a682-33c7a8934075
+		summarizeBy: none
+		sourceColumn: file_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column bronze_ingestion_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5ae42b8e-67e9-41de-9741-59cde0dc8cf5
+		summarizeBy: none
+		sourceColumn: bronze_ingestion_ts
+
+		variation Variation
+			isDefault
+			relationship: 24dff79c-8896-4c54-a86e-9865dc97451f
+			defaultHierarchy: LocalDateTable_191dc5b8-b9a2-4f43-a696-f181eee2444f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column landing_ingestion_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6028d6f7-7bc7-4505-b6b7-5202ae1cd685
+		summarizeBy: none
+		sourceColumn: landing_ingestion_ts
+
+		variation Variation
+			isDefault
+			relationship: 73f91383-9c3e-4d9b-acf2-47846bafb447
+			defaultHierarchy: LocalDateTable_cff315b9-ec41-4663-8a96-779cdddfd68c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'landing wlmds_specialty_landing' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("cpyrj2l3u7cepf4tjtoipc3tyy-m7utez3cd7gezjzemdtewuldnq.datawarehouse.fabric.microsoft.com", "VBM_EquiWait_WH"),
+				    landing_wlmds_specialty_landing = Source{[Schema="landing",Item="wlmds_specialty_landing"]}[Data]
+				in
+				    landing_wlmds_specialty_landing
+
+	annotation PBI_ResultType = Table
+
