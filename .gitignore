@@ -63,7 +63,8 @@ fabric_workspace/pipelines/
 fabric_workspace/stats_regression.MLExperiment/
 fabric_workspace/VBM_EquiWait_WH.Warehouse/
 fabric_workspace/VBM_EquiWait_LH.Lakehouse/
-
+fabric_workspace/VBM_NHS_Waiting_List_Equity_Dashboard_FINAL.Report/
+fabric_workspace/VBM_NHS_Waiting_List_Equity_Dashboard_FINAL.SemanticModel/
 
 
 # ------------------------------------------------------------
