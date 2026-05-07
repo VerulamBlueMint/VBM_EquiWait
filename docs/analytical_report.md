@@ -83,7 +83,7 @@ The NHS public sector equality duty includes having due regard to advancing equa
 
 ---
 
-## Finding 2 - Ethnicity: System-Wide Over-Representation for Specific Groups
+## Finding 02 - Ethnicity: System-Wide Over-Representation for Specific Groups
 
 In every monthly snapshot from July 2025 to February 2026, patients recorded as Indian, Pakistani or Bangladeshi make up a larger share of the 18 to 52 week wait band than their share of the total waiting list. The same groups appear in the same direction in all eight months. The aggregate Cramers V for ethnicity is 0.009 to 0.013. The finding is noted for its consistency across time and its concentration in specific groups, not for the size of the individual-level effect.
 
@@ -91,7 +91,7 @@ Eight months of data in the same direction for the same groups is harder to attr
 
 ---
 
-## Finding 3 - Ethnicity: Specialty Mix Does Not Explain the Long-Wait Gap
+## Finding 03 - Ethnicity: Specialty Mix Does Not Explain the Long-Wait Gap
 
 One explanation for the pattern in Finding 02 requires no assumption of unequal treatment: these groups may simply be concentrated in specialties with the highest breach rates. If true, the over-representation would be a composition effect, a product of which services they are waiting for, not how they are treated within those services. Two tests assess this directly.
 
@@ -100,6 +100,7 @@ First, Bhattacharyya coefficients comparing each group's specialty distribution 
 Second, direct standardisation estimates the breach rate each group would experience if they faced national breach rates within each specialty, given their actual specialty mix. Across all eight months, actual breach rates exceed expected rates for all three groups. The gap is consistently positive: up to +2.0 percentage points for Pakistani patients, up to +1.8 percentage points for Bangladeshi patients, and smaller but consistently positive for Indian patients. If specialty mix were the explanation, expected and actual breach rates would align after adjustment. They do not.
 
 These analyses do not identify the cause of the remaining gap. They establish that specialty mix is not the primary explanation for the observed over-representation.
+
 ---
 
 ## Finding 04 - Regional Geography: A Persistent East of England Gap
