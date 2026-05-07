@@ -83,21 +83,26 @@ The NHS public sector equality duty includes having due regard to advancing equa
 
 ---
 
-## Finding 02 - Ethnicity: Consistent Over-Representation in Specific Pathways
+## Finding 2 - Ethnicity: System-Wide Over-Representation for Specific Groups
 
 In every monthly snapshot from July 2025 to February 2026, patients recorded as Indian, Pakistani or Bangladeshi make up a larger share of the 18 to 52 week wait band than their share of the total waiting list. The same groups appear in the same direction in all eight months. The aggregate Cramers V for ethnicity is 0.009 to 0.013. The finding is noted for its consistency across time and its concentration in specific groups, not for the size of the individual-level effect.
-
-The specialty-level representation index data adds an important observation. The over-representation is not concentrated in the three highest-breach specialties: Ear Nose and Throat, Oral Surgery and Plastic Surgery all show representation index values at or below parity for this group throughout the window. The pattern is instead present in Dermatology, Neurosurgical and General Internal Medicine, all of which have average or below-average breach rates. This means the pattern is not simply explained by these groups entering the most pressured pathways.
-
-Dermatology shows a representation index above 1.0 in every month across the window, with patient numbers of 3,025 to 3,730 - large enough that the index is not sensitive to small count changes. Its breach rate is close to the national average. The over-representation is therefore not explained by Dermatology performing poorly overall. Dermatology is the most stable and specific equity signal in the specialty data.
-
-Specialties with very small patient numbers for the selected group (below approximately 100) produce index values that are sensitive to small count changes and should not be treated as primary signals.
 
 Eight months of data in the same direction for the same groups is harder to attribute to chance than any single month's result. The data does not suggest that any individual or organisation has acted inappropriately. It identifies where consistent patterns exist and notes that they are worth understanding.
 
 ---
 
-## Finding 03 - Regional Geography: A Persistent East of England Gap
+## Finding 3 - Ethnicity: Specialty Mix Does Not Explain the Long-Wait Gap
+
+One explanation for the pattern in Finding 02 requires no assumption of unequal treatment: these groups may simply be concentrated in specialties with the highest breach rates. If true, the over-representation would be a composition effect, a product of which services they are waiting for, not how they are treated within those services. Two tests assess this directly.
+
+First, Bhattacharyya coefficients comparing each group's specialty distribution to the national average range from 0.987 to 0.998 across all eight months, indicating near-identical distributions. A necessary condition for the specialty mix explanation, that these groups are concentrated in higher-breach specialties, is not met.
+
+Second, direct standardisation estimates the breach rate each group would experience if they faced national breach rates within each specialty, given their actual specialty mix. Across all eight months, actual breach rates exceed expected rates for all three groups. The gap is consistently positive: up to +2.0 percentage points for Pakistani patients, up to +1.8 percentage points for Bangladeshi patients, and smaller but consistently positive for Indian patients. If specialty mix were the explanation, expected and actual breach rates would align after adjustment. They do not.
+
+These analyses do not identify the cause of the remaining gap. They establish that specialty mix is not the primary explanation for the observed over-representation.
+---
+
+## Finding 04 - Regional Geography: A Persistent East of England Gap
 
 Regional breach rates show a consistent ordering across all eight months. No region switches position materially.
 
@@ -113,7 +118,7 @@ Mid and South Essex sits within East of England and contributes materially to th
 
 ---
 
-## Finding 04 - Trust-Level Variation: Scale and Persistence
+## Finding 05 - Trust-Level Variation: Scale and Persistence
 
 Mid and South Essex NHS Foundation Trust has the largest and most persistent gap to the national average in the trust-level data. It is presented here as the clearest illustration of a wider pattern of stable trust-level variation, not as an isolated case.
 
@@ -136,7 +141,7 @@ Liverpool Women's records a severe breach rate of 10.65% in October and 12.02% i
 
 ---
 
-## Finding 05 - Specialty: The Largest Source of Variation
+## Finding 06 - Specialty: The Largest Source of Variation
 
 Ear Nose and Throat has the highest breach rate of any specialty in every month across the window, at approximately 47 to 50%, running 7 to 10 percentage points above the national average consistently. Oral Surgery is second or joint-first in every month. Plastic Surgery is third at approximately 42 to 48%. The ranking does not change across the eight-month window and the rates do not move materially.
 
@@ -150,7 +155,7 @@ The specialty finding is directly relevant to the ethnicity finding in Finding 0
 
 ---
 
-## Finding 06 - National Position: Stable Access, Falling Extreme Waits
+## Finding 07 - National Position: Stable Access, Falling Extreme Waits
 
 The national 18-week breach rate opens at 39.87% in July 2025 and closes at 39.11% in February 2026, moving within a band consistent with normal variation rather than any directional trend. Approximately 2.8 million patients are in breach at every snapshot. This is consistent with published RTT statistics over this period.
 

@@ -440,16 +440,9 @@ Indian, Pakistani and Bangladeshi patients are over-represented in the 18-52 wee
 
 ---
 
-### Finding 3 - Ethnicity: Specialty-Specific Over-Representation
+### Finding 3 - Ethnicity: Specialty Mix Does Not Explain the Long-Wait Gap
 
-
-For patients coded as “Any other Asian background”, over-representation in the 18-52 week band is consistently concentrated in Dermatology, Neurosurgery and General Internal Medicine-specialties with below or near-average breach rates. This pattern is not concentrated in Ear Nose and Throat, Oral Surgery or Plastic Surgery, which have the highest breach rates in the dataset.
-
-Dermatology shows a representation index above 1.0 in every month, with patient counts of 3,025-3,730. Neurosurgery and General Internal Medicine are also consistently above 1.0 across all eight months.
-
-The overall association is small (Cramér’s V 0.009-0.013) but stable in direction across all months and consistently present in the longest-waiting band. This reflects a structured pattern rather than random variation.
-
-In practice, this indicates that a limited number of specialties are contributing disproportionately to longer waits for this group. The pattern is not driven by overall system performance, but is concentrated within specific clinical pathways.
+Specialty mix alone cannot be used to account for the over-representation. Indian, Pakistani and Bangladeshi patients have near-identical specialty distributions to the national average. Bhattacharyya coefficients range from 0.987 to 0.998, ruling out concentration in high-breach specialties as the explanation. After direct standardisation, actual breach rates exceed expected rates for all three groups in every month, with gaps up to +2.0 percentage points. 
 
 ---
 
